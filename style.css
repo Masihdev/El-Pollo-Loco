@@ -1,0 +1,153 @@
+body {
+    margin: 0;
+}
+
+.game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: blue;
+    height: 100vh;
+    background-image: url('img/9_intro_outro_screens/start/startscreen_2.png');
+    background-position: center;
+    background-size: cover;
+}
+
+h1 {
+    color: #FFDD02;
+    font-size: 40px;
+}
+
+canvas {
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    display: block;
+}
+
+.start-screen {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-image: url('img/9_intro_outro_screens/start/startscreen_2.png');
+    background-position: center;
+    background-size: cover;
+}
+
+.start-btn {
+    display: flex;
+    width: 500px;
+    height: 100px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+    cursor: pointer;
+    border: 10px #7D2F13;
+    border-style: dashed double inset dotted;
+    border-radius: 10px;
+    color: #7D2F13;
+}
+
+.start-btn:hover {
+    border-color: #FFDD02;
+    color: #FFDD02;
+}
+
+.start-btn span {
+    font-size: 70px;
+    font-weight: bolder;
+}
+
+.controls {
+    background-color: #7D2F13;
+    height: 100px;
+    width: 720px;
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.controls {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    color: white;
+}
+
+.left,
+.right,
+.jump,
+.throw-bottle {
+    display: flex;
+    align-items: center;
+}
+
+.left,
+.right,
+.jump,
+.throw-bottle,
+img {
+    margin-right: 10px;
+}
+
+.d {
+    width: 43px;
+}
+
+.fullscreen {
+    position: absolute;
+    top: 150px;
+    right: 420px;
+    cursor: pointer;
+}
+
+.fullscreen img {
+    width: 30px;
+    opacity: 0.8;
+}
+
+.fullscreen img:hover {
+    opacity: 1;
+}
+
+
+/* .blinking {
+    animation: blinkingText 1.2s infinite;
+} */
+
+.game-over {
+    background-image: url('img/9_intro_outro_screens/game_over/game over.png');
+    background-repeat: no-repeat;
+    background-size: 100%;
+    background-position: center;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: #ffdd02b7;
+    z-index: 78979;
+}
+
+.game-over-child {
+    margin-top: 600px !important;
+}
+
+.d-none {
+    display: none;
+}
+
+@media only screen and (max-width: 720px) {
+    canvas {
+        width: 100%;
+    }
+}
+
+@media only screen and (max-height: 480px) {
+    canvas {
+        height: 100vh;
+    }
+}
