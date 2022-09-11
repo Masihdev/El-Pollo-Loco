@@ -31,20 +31,12 @@ class MovableObject extends DrawableObjects {
     }
 
 
+
     isColliding(mo) {
-        // if (this instanceof Character) {
         return this.x + this.width - this.offsetRight > mo.x + mo.offsetLeft &&
             this.y + this.height - this.offsetBottom > mo.y + mo.offsetTop &&
             this.x + this.offsetLeft < mo.x + mo.width - mo.offsetRight &&
             this.y + this.offsetTop < mo.y + mo.height - mo.offsetBottom;
-        // }
-        // // } else 
-        // {
-        //     return this.x + this.width > mo.x &&
-        //         this.y + this.height > mo.y &&
-        //         this.x < mo.x + mo.width &&
-        //         this.y < mo.y + mo.height;
-
     }
 
 
@@ -77,9 +69,11 @@ class MovableObject extends DrawableObjects {
         this.currentImage++;
     }
 
+
     moveRight() {
         this.x += this.speed;
     }
+
 
     moveLeft() {
         this.x -= this.speed;
@@ -88,19 +82,5 @@ class MovableObject extends DrawableObjects {
 
     jump() {
         this.speedY = 35;
-
-
     }
-
-
-    /**
-     * This function is used to set the energy of an enemy to 0.
-     */
-    kill() {
-        this.energy = 0;
-    }
-
-
-
-
 }

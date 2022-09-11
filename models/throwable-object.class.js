@@ -39,6 +39,7 @@ class ThrowableObject extends MovableObject {
 
     }
 
+
     throw () {
         this.speedY = 20;
         this.applyGravity();
@@ -47,7 +48,6 @@ class ThrowableObject extends MovableObject {
         }, 25);
 
         this.animate();
-
     }
 
 
@@ -57,12 +57,6 @@ class ThrowableObject extends MovableObject {
                 this.playAnimation(this.IMAGES_BOTTLE_ROTATION);
             }
         }, 25);
-
-        // setInterval(() => {
-        //     if (this.bottleIsColliding == true) {
-        //         this.playAnimation(this.IMAGES_BOTTLE_SPLASH); // nachfragen
-        //     }
-        // }, 100);
     }
 
 

@@ -2,7 +2,6 @@ class World {
 
     character = new Character();
     level = level1;
-
     ctx;
     canvas;
     keyboard;
@@ -10,16 +9,12 @@ class World {
     statusbar = new Statusbar(); // live status bar
     coinbar = new CoinBar();
     bottlebar = new Bottle();
+    endboss = this.level.endboss[0];
     endbossbar = new EndbossBar();
     throwableObject = [];
     coin_collect_sound = new Audio('audio/coin_collect.mp3');
     bottle_collect_sound = new Audio('audio/bottle_collect.mp3');
     throw_bottle_sound = new Audio('audio/throw_bottle.mp3');
-
-    endboss = this.level.endboss[0];
-
-
-
 
 
 
@@ -41,12 +36,25 @@ class World {
             this.collisionWithBottle();
             this.collisionWithCoin();
             this.bottleCollisionWithEnemy();
+            this.checkCollisionWithEndboss();
         }, 200);
     }
 
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
+            if (this.character.isColliding(enemy)) {
+                console.log('collision with character', enemy)
+                this.character.hit();
+                this.statusbar.setPercentage(this.character.energy);
+                console.log('collision with character, energy ', this.character.energy)
+            }
+        });
+    }
+
+
+    checkCollisionWithEndboss() {
+        this.level.endboss.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
                 console.log('collision with character', enemy)
                 this.character.hit();
@@ -96,27 +104,6 @@ class World {
         }
     }
 
-    // TRY
-    // checkBottleCollisionwithEnemy() {
-    //     this.throwableObjects.forEach((bubble) => {
-    //         this.level.endboss.forEach((endboss) => {
-    //             if (bubble.isColliding(endboss)) {
-    //                 endboss.hit(bubble);
-    //                 this.endbossBar.setPercentage(endboss.energy);
-    //                 bubble.splash = true;
-    //                 // this.glass_sound.play();
-
-    //                 // setTimeout(() => {
-    //                 //     let index = this.throwableObjects.indexOf(bubble)
-    //                 //     this.throwableObjects.splice(index, 1)
-    //                 // }, 200);
-    //                 // if (endboss.energy == 0) {
-    //                 //     this.win = true;
-    //                 // }
-    //             }
-    //         })
-    //     })
-    // }
 
     bottleCollisionWithEnemy() {
         this.throwableObject.forEach((to, index) => {
@@ -141,6 +128,7 @@ class World {
             }
         });
     }
+
 
     // connecting world class with character class
     setWorld() {
@@ -247,5 +235,4 @@ class World {
         this.ctx.restore();
         mo.x = mo.x * -1;
     }
-
 }

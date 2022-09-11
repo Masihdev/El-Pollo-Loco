@@ -21,44 +21,37 @@ class Chicken extends MovableObject {
     ];
 
     constructor(x) {
-        super().loadImage('img/3_enemies_chicken/chicken_normal/1_walk/1_w.png');
+        super().loadImage(this.IMAGES_WALKING[0]);
 
         this.loadImages(this.IMAGES_WALKING);
+        this.loadImages(this.IMAGES_DEAD);
         this.animate();
         this.speed = 0.15 + Math.random() * 1;
-
+        // this.x = 200;
         this.x = 2000 + Math.random() * 500; // random number between 0 and 1
     }
 
     animate() {
-        // setInterval(() => {
-        //     this.moveLeft();
-        // }, 1000 / 60);
-
-        // setInterval(() => {
-        //     this.playAnimation(this.IMAGES_WALKING);
-
-        // }, 300);
         setInterval(() => {
-            if (!this.isDead()) {
-                this.moveLeft();
-            }
+            this.moveLeft();
         }, 1000 / 60);
 
         setInterval(() => {
-            if (this.isDead()) {
-                this.playAnimation(this.IMAGES_DEAD);
-            } else {
-                this.playAnimation(this.IMAGES_WALKING);
-            }
-        }, 130);
-    }
+            this.playAnimation(this.IMAGES_WALKING);
+        }, 300);
 
+        // setInterval(() => {
+        //     if (!this.isDead()) {
+        //         this.moveLeft();
+        //     }
+        // }, 1000 / 60);
 
-    /**
-     * This function is used to lower the chicken energy, if it is hurt
-     */
-    kill() {
-        super.kill();
+        //     setInterval(() => {
+        //         if (this.isDead()) {
+        //             this.loadImage(this.IMAGES_CHICKEN_DEAD);
+        //         } else {
+        //             this.playAnimation(this.IMAGES_WALKING);
+        //         }
+        //     }, 130);
     }
 }

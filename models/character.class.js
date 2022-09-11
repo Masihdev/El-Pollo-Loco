@@ -136,8 +136,10 @@ class Character extends MovableObject {
                 }, 2000);
 
                 this.world.keyboard = false;
+
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
+
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMP);
 
