@@ -2,8 +2,9 @@ class BottleOnGround extends MovableObject {
     y = 360;
     width = 100;
     height = 100;
-    // offsetW = 800;
-    // offsetX = 700;
+
+    offsetLeft = 30;
+    offsetRight = 50;
 
 
     IMAGES_BOTTLE = [

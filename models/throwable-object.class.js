@@ -1,5 +1,6 @@
 class ThrowableObject extends MovableObject {
 
+    bottleRotation = false;
 
     IMAGES = [
         'img/7_statusbars/3_icons/icon_salsa_bottle.png',
@@ -28,7 +29,7 @@ class ThrowableObject extends MovableObject {
         this.loadImages(this.IMAGES_BOTTLE_ROTATION);
         this.loadImages(this.IMAGES_BOTTLE_SPLASH);
         this.x = x;
-        this.y = x;
+        this.y = y;
         this.height = 80;
         this.width = 70;
         this.throw();
@@ -42,9 +43,54 @@ class ThrowableObject extends MovableObject {
         this.speedY = 20;
         this.applyGravity();
         setInterval(() => {
-            this.x += 10;
+            this.x += 20;
         }, 25);
+
+        this.animate();
+
     }
+
+
+    animate() {
+        setInterval(() => {
+            if (this.bottleRotation == true) {
+                this.playAnimation(this.IMAGES_BOTTLE_ROTATION);
+            }
+        }, 25);
+
+        // setInterval(() => {
+        //     if (this.bottleIsColliding == true) {
+        //         this.playAnimation(this.IMAGES_BOTTLE_SPLASH); // nachfragen
+        //     }
+        // }, 100);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     // splash = false;
     // world;

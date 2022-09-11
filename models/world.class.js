@@ -12,6 +12,15 @@ class World {
     bottlebar = new Bottle();
     endbossbar = new EndbossBar();
     throwableObject = [];
+    coin_collect_sound = new Audio('audio/coin_collect.mp3');
+    bottle_collect_sound = new Audio('audio/bottle_collect.mp3');
+    throw_bottle_sound = new Audio('audio/throw_bottle.mp3');
+
+    endboss = this.level.endboss[0];
+
+
+
+
 
 
     constructor(canvas, keyboard) {
@@ -31,28 +40,15 @@ class World {
             this.checkThrowObjects();
             this.collisionWithBottle();
             this.collisionWithCoin();
+            this.bottleCollisionWithEnemy();
         }, 200);
-    }
-
-
-    checkThrowObjects() {
-        if (this.bottlebar.percent == 0) {
-            this.world.keyboard.D = false;
-        }
-        if (this.keyboard.D) {
-            // this.bottlebar.percentage -= 20;
-            // this.bottlebar.setPercentage(this.bottlebar.percentage);
-            // this.keyboard.D = false;
-            let bottle = new ThrowableObject(this.character.x + 100, this.character.y - 800);
-            this.throwableObject.splice(0, 1);
-            this.throwableObject.push(bottle);
-        }
     }
 
 
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
+                console.log('collision with character', enemy)
                 this.character.hit();
                 this.statusbar.setPercentage(this.character.energy);
                 console.log('collision with character, energy ', this.character.energy)
@@ -68,7 +64,8 @@ class World {
                 this.coinbar.getCoin();
                 this.coinbar.setPercentage(this.coinbar.percentage);
                 this.level.coin.splice(i, 1);
-                console.log('collision with coin', this.coin);
+                console.log('collision with coin', coin);
+                this.coin_collect_sound.play();
             }
         });
     }
@@ -81,32 +78,69 @@ class World {
                 this.bottlebar.setPercentage(this.bottlebar.percentage);
                 this.level.bottles.splice(i, 1);
                 console.log('collision with bottle', this.bottles);
+                this.bottle_collect_sound.play();
             }
         });
     }
 
-    // TRY
-    checkBottleCollisionwithEnemy() {
-        this.throwableObjects.forEach((bubble) => {
-            this.level.endboss.forEach((endboss) => {
-                if (bubble.isColliding(endboss)) {
-                    endboss.hit(bubble);
-                    this.endbossBar.setPercentage(endboss.energy);
-                    bubble.splash = true;
-                    // this.glass_sound.play();
 
-                    // setTimeout(() => {
-                    //     let index = this.throwableObjects.indexOf(bubble)
-                    //     this.throwableObjects.splice(index, 1)
-                    // }, 200);
-                    // if (endboss.energy == 0) {
-                    //     this.win = true;
-                    // }
-                }
-            })
-        })
+    checkThrowObjects() {
+        if (this.bottlebar.percentage >= 20 && this.keyboard.D) {
+            let bottle = new ThrowableObject(this.character.x + 80, this.character.y + 120);
+            this.throwableObject.push(bottle);
+            bottle.bottleRotation = true;
+            this.bottlebar.reduceBottles();
+            this.bottlebar.setPercentage(this.bottlebar.percentage);
+            this.throw_bottle_sound.play();
+            //     this.throwableObject.splice(0, 1);
+        }
     }
 
+    // TRY
+    // checkBottleCollisionwithEnemy() {
+    //     this.throwableObjects.forEach((bubble) => {
+    //         this.level.endboss.forEach((endboss) => {
+    //             if (bubble.isColliding(endboss)) {
+    //                 endboss.hit(bubble);
+    //                 this.endbossBar.setPercentage(endboss.energy);
+    //                 bubble.splash = true;
+    //                 // this.glass_sound.play();
+
+    //                 // setTimeout(() => {
+    //                 //     let index = this.throwableObjects.indexOf(bubble)
+    //                 //     this.throwableObjects.splice(index, 1)
+    //                 // }, 200);
+    //                 // if (endboss.energy == 0) {
+    //                 //     this.win = true;
+    //                 // }
+    //             }
+    //         })
+    //     })
+    // }
+
+    bottleCollisionWithEnemy() {
+        this.throwableObject.forEach((to, index) => {
+            if (to.isColliding(this.endboss)) {
+                this.endboss.hit();
+                // this.bottle_shattered_sound.play();
+                // this.endboss_sound.play();
+                this.endbossbar.setPercentage(this.endboss.energy);
+                // to.bottleCollision();
+
+                setTimeout(() => {
+                    // this.throwableObject.splice(index, 1);
+                }, 200);
+
+            } else if (to.y > 255) {
+                // this.bottle_shattered_sound.play();
+                // to.bottleCollision();
+
+                setTimeout(() => {
+                    // this.throwableObjects.splice(index, 1)
+                }, 100);
+            }
+        });
+    }
 
     // connecting world class with character class
     setWorld() {
@@ -135,6 +169,7 @@ class World {
         this.addObjectsToMap(this.level.bottles);
         this.addObjectsToMap(this.level.coin);
         this.addObjectsToMap(this.throwableObject);
+        this.addObjectsToMap(this.level.endboss);
         this.addToMap(this.character);
         // bars
         this.ctx.translate(-this.camera_x, 0); // back

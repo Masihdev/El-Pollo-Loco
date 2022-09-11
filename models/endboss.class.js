@@ -3,8 +3,13 @@ class Endboss extends MovableObject {
     y = 40;
     width = 300;
     height = 450;
-    energy = 100;
+    energy = 50;
     world;
+
+    offsetTop = 50;
+    offsetBottom = 60;
+    offsetLeft = 20;
+    offsetRight = 30;
 
     // unlockBoss;
 
@@ -16,7 +21,7 @@ class Endboss extends MovableObject {
         'img/4_enemie_boss_chicken/1_walk/G4.png'
     ];
 
-    IMAGES_alert = [
+    IMAGES_ALERT = [
         'img/4_enemie_boss_chicken/2_alert/G5.png',
         'img/4_enemie_boss_chicken/2_alert/G6.png',
         'img/4_enemie_boss_chicken/2_alert/G7.png',
@@ -54,14 +59,16 @@ class Endboss extends MovableObject {
     ]
 
     constructor() {
-        super().loadImage(this.IMAGES_alert[0]);
+        super().loadImage(this.IMAGES_ALERT[0]);
         this.loadImages(this.IMAGES_WALKING);
-        this.loadImages(this.IMAGES_alert);
+        this.loadImages(this.IMAGES_ALERT);
         this.loadImages(this.IMAGES_ATTACK);
         this.loadImages(this.IMAGES_HURT);
         this.loadImages(this.IMAGES_DEAD);
 
-        this.x = 2250;
+        // this.x = 2250;
+        this.x = 200;
+
         this.speed = 0.15;
         this.animate();
 
@@ -82,7 +89,7 @@ class Endboss extends MovableObject {
             //     this.playAnimation(this.IMAGES_WALKING)
             // } 
             else {
-                this.playAnimation(this.IMAGES_ATTACK);
+                this.playAnimation(this.IMAGES_ALERT);
             }
         }, 200);
     }

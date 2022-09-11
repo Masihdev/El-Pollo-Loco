@@ -52,4 +52,11 @@ class Bottle extends DrawableObjects {
         }
 
     }
+
+    reduceBottles() {
+        this.percentage -= 20;
+        if (this.percentage < 0) {
+            this.percentage = 0;
+        }
+    }
 }

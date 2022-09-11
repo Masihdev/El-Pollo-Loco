@@ -7,6 +7,11 @@ class DrawableObjects {
     width = 150;
     height = 250;
 
+    offsetTop = 0;
+    offsetBottom = 0;
+    offsetLeft = 0;
+    offsetRight = 0;
+
 
     /**
      * load images of character and chicken
@@ -28,11 +33,24 @@ class DrawableObjects {
     // draws rectangle around objects
 
     drawFrame(ctx) {
-        if (this instanceof Character || this instanceof Chicken || this instanceof SmallChicken || this instanceof BottleOnGround || this instanceof Coin) {
+        // if (this instanceof Character || this instanceof Coin) {
+
+        // if (this instanceof Character || this instanceof Chicken || this instanceof SmallChicken || this instanceof BottleOnGround || this instanceof Coin) {
+        // ctx.beginPath();
+        // ctx.lineWidth = '5';
+        // ctx.strokeStyle = 'red';
+        // ctx.rect(this.x, this.y, this.width, this.height);
+        // ctx.stroke();
+        // }
+
+        if (this instanceof Character || this instanceof BottleOnGround || this instanceof Endboss) {
+
+            // if (this instanceof Character || this instanceof Chicken || this instanceof SmallChicken || this instanceof BottleOnGround || this instanceof Coin) {
             ctx.beginPath();
-            ctx.lineWidth = '1';
+            ctx.lineWidth = '3';
             ctx.strokeStyle = 'blue';
-            ctx.rect(this.x, this.y, this.width, this.height);
+            // ctx.rect(this.x, this.y, this.width, this.height);
+            ctx.rect(this.x + this.offsetLeft, this.y + this.offsetTop, this.width - this.offsetRight, this.height - this.offsetBottom);
             ctx.stroke();
         }
     }

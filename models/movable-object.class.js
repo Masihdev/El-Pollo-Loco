@@ -6,12 +6,8 @@ class MovableObject extends DrawableObjects {
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
-    offset = {
-        top: 0,
-        bottom: 0,
-        left: 0,
-        right: 0
-    };
+
+
 
 
     // falling to the ground
@@ -36,17 +32,19 @@ class MovableObject extends DrawableObjects {
 
 
     isColliding(mo) {
-        if (this instanceof Character) {
-            return this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
-                this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
-                this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
-                this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom;
-        } else {
-            return this.x + this.width > mo.x &&
-                this.y + this.height > mo.y &&
-                this.x < mo.x &&
-                this.y < mo.y + mo.height;
-        }
+        // if (this instanceof Character) {
+        return this.x + this.width - this.offsetRight > mo.x + mo.offsetLeft &&
+            this.y + this.height - this.offsetBottom > mo.y + mo.offsetTop &&
+            this.x + this.offsetLeft < mo.x + mo.width - mo.offsetRight &&
+            this.y + this.offsetTop < mo.y + mo.height - mo.offsetBottom;
+        // }
+        // // } else 
+        // {
+        //     return this.x + this.width > mo.x &&
+        //         this.y + this.height > mo.y &&
+        //         this.x < mo.x + mo.width &&
+        //         this.y < mo.y + mo.height;
+
     }
 
 
@@ -91,6 +89,18 @@ class MovableObject extends DrawableObjects {
     jump() {
         this.speedY = 35;
 
+
     }
+
+
+    /**
+     * This function is used to set the energy of an enemy to 0.
+     */
+    kill() {
+        this.energy = 0;
+    }
+
+
+
 
 }
