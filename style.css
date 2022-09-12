@@ -141,3 +141,71 @@ h1 {
         height: 100vh;
     }
 }
+
+@media(max-width: 730px) {
+    .start-btn {
+        width: 200px;
+        height: 60px;
+    }
+    .game-intro {
+        width: 420px;
+        height: 280px;
+    }
+    .controls {
+        height: 100px;
+        width: 420px;
+    }
+    .left img,
+    .right img,
+    .jump img,
+    .throw-bottle img {
+        width: 30px;
+        height: auto;
+    }
+    .left span,
+    .right span,
+    .jump span,
+    .throw-bottle span {
+        font-size: 12px;
+        margin-left: 5px;
+    }
+}
+
+@media(max-width: 460px) {
+    .start-btn {
+        width: 150px;
+        height: 40px;
+    }
+    .game-intro {
+        width: 320px;
+        height: 250px;
+    }
+    .controls {
+        height: 80px;
+        width: 320px;
+    }
+    .left img,
+    .right img,
+    .jump img,
+    .throw-bottle img {
+        width: 20px;
+        height: auto;
+    }
+    .left span,
+    .right span,
+    .jump span,
+    .throw-bottle span {
+        font-size: 8px;
+        margin-left: 5px;
+    }
+}
+
+@media (max-width: 600px) {
+    .game-over img {
+        width: 100px;
+        height: auto;
+    }
+    .game-over {
+        background-size: 850px;
+    }
+}

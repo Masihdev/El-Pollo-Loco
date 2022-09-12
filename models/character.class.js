@@ -139,7 +139,7 @@ class Character extends MovableObject {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.character_death.play();
-                this.character_death.volume = 0.1;
+                this.character_death.volume = 0.01;
                 setTimeout(() => {
                     clearInterval(CharacterImages);
                     gameOver();

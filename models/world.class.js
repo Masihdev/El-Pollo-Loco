@@ -90,6 +90,7 @@ class World {
                 this.level.bottles.splice(i, 1);
                 console.log('collision with bottle', this.bottles);
                 this.bottle_collect_sound.play();
+                this.throw_bottle_sound.volume = 0.1;
             }
         });
     }
