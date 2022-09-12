@@ -2,13 +2,17 @@ class Character extends MovableObject {
 
     world; // connecting workd class with character class
     speed = 10;
-    walking_sound = new Audio('audio/walk.mp3');
-    jumping_sound = new Audio('audio/jump.mp3');
+    x = -719 * 2;
 
     offsetTop = 100;
     offsetBottom = 85;
     offsetLeft = 20;
     offsetRight = 50;
+
+    walking_sound = new Audio('audio/walk.mp3');
+    jumping_sound = new Audio('audio/jump.mp3');
+    character_hurt = new Audio('audio/character_hurt.mp3');
+    character_death = new Audio('audio/character_death_sound.mp3');
 
 
     IMAGES_IDLE = [
@@ -104,6 +108,8 @@ class Character extends MovableObject {
                 this.moveRight();
                 this.otherDirection = false;
                 this.walking_sound.play();
+                this.walking_sound.volume = 0.01;
+
             }
 
             // walking left
@@ -111,11 +117,14 @@ class Character extends MovableObject {
                 this.moveLeft();
                 this.otherDirection = true;
                 this.walking_sound.play();
+                this.walking_sound.volume = 0.01;
             }
 
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
+
                 this.jumping_sound.play();
+                this.jumping_sound.volume = 0.1;
             }
 
             // when the character moves left or right, camera view moves reverse
@@ -129,7 +138,8 @@ class Character extends MovableObject {
 
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
-
+                this.character_death.play();
+                this.character_death.volume = 0.1;
                 setTimeout(() => {
                     clearInterval(CharacterImages);
                     gameOver();
@@ -139,7 +149,8 @@ class Character extends MovableObject {
 
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
-
+                this.character_hurt.play();
+                this.character_hurt.volume = 0.1;
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMP);
 

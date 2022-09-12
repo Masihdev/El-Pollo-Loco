@@ -15,7 +15,9 @@ class World {
     coin_collect_sound = new Audio('audio/coin_collect.mp3');
     bottle_collect_sound = new Audio('audio/bottle_collect.mp3');
     throw_bottle_sound = new Audio('audio/throw_bottle.mp3');
+    endboss_hurt_Sound = new Audio('audio/endboss_hurt.mp3');
 
+    endboss_hurt_Sound1 = new Audio('1.mp3');
 
 
     constructor(canvas, keyboard) {
@@ -74,6 +76,7 @@ class World {
                 this.level.coin.splice(i, 1);
                 console.log('collision with coin', coin);
                 this.coin_collect_sound.play();
+                this.coin_collect_sound.volume = 0.1;
             }
         });
     }
@@ -100,6 +103,7 @@ class World {
             this.bottlebar.reduceBottles();
             this.bottlebar.setPercentage(this.bottlebar.percentage);
             this.throw_bottle_sound.play();
+            this.throw_bottle_sound.volume = 0.1;
             //     this.throwableObject.splice(0, 1);
         }
     }
@@ -109,8 +113,7 @@ class World {
         this.throwableObject.forEach((to, index) => {
             if (to.isColliding(this.endboss)) {
                 this.endboss.hit();
-                // this.bottle_shattered_sound.play();
-                // this.endboss_sound.play();
+                this.endboss_hurt_Sound.play();
                 this.endbossbar.setPercentage(this.endboss.energy);
                 // to.bottleCollision();
 

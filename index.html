@@ -34,48 +34,34 @@
 
 </head>
 
-<body onload="init()">
-    <div class="start-screen d-none" id="start-screen">
-        <div class="start-btn" onclick="hideStartScreen();  init()">
-            <span>START</span>
+<body>
+    <div class="main-container" id="main-container">
+        <div class="start-screen">
+            <div class="game-intro">
+
+            </div>
+            <div class="controls" id="controls">
+                <div class="left">
+                    <img src="img/left.ico" alt="">
+                    <span>MOVE LEFT</span>
+                </div>
+                <div class="right">
+                    <img src="img/right.ico" alt="">
+                    <span>MOVE RIGHT</span>
+                </div>
+                <div class="jump">
+                    <img src="img/space.ico" alt="">
+                    <span>JUMP</span>
+                </div>
+                <div class="throw-bottle">
+                    <img class="d" src="img/letter-d-48.ico" alt="">
+                    <span>THROW BOTTLE</span>
+                </div>
+            </div>
+            <img class="start-btn" src="./img/start-btn.png" alt="" onclick="hideStartScreen(); init()">
         </div>
     </div>
 
-    <!-- <div class="game" id="game"> -->
-    <h1>EL POLLO LOCO</h1>
-
-    <canvas id="canvas" width="720" height="480">
-            
-        </canvas>
-
-    <div class="fullscreen d-none" id="fullscreen" onclick="fullscreenCanvas()">
-        <img src="img/fullscreen-12-48.ico" alt="">
-    </div>
-    <div class="controls d-none" id="controls">
-        <div class="left">
-            <img src="img/left.ico" alt="">
-            <span>MOVE LEFT</span>
-        </div>
-        <div class="right">
-            <img src="img/right.ico" alt="">
-            <span>MOVE RIGHT</span>
-        </div>
-        <div class="jump">
-            <img src="img/space.ico" alt="">
-            <span>JUMP</span>
-        </div>
-        <div class="throw-bottle">
-            <img class="d" src="img/letter-d-48.ico" alt="">
-            <span>THROW BOTTLE</span>
-        </div>
-    </div>
-    <!-- </div> -->
-
-    <!-- <div class="game-over start-screen d-none" id="game-over">
-        <div class="start-btn game-over-child" onclick="restart()">
-            <span>RESTART</span>
-        </div>
-    </div> -->
 </body>
 
 </html>

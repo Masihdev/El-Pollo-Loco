@@ -11,6 +11,7 @@ class Endboss extends MovableObject {
     offsetLeft = 20;
     offsetRight = 30;
 
+    endboss_dead_sound = new Audio('audio/endboss_dead_sound.mp3');
 
 
     IMAGES_WALKING = [
@@ -78,21 +79,29 @@ class Endboss extends MovableObject {
 
     animate() {
 
-        setInterval(() => {
+        let endBossImages = setInterval(() => {
             if (this.energy == 0) {
                 this.playAnimation(this.IMAGES_DEAD);
+                this.endboss_dead_sound.play();
+                this.endboss_dead_sound.volume = 0.1;
+                setTimeout(() => {
+                    clearInterval(endBossImages);
+                    gameOver();
+                }, 2000);
+
             } else if (this.isHurt()) {
                 this.playAnimation(this.IMAGES_HURT);
+
             } else {
-                this.playAnimation(this.IMAGES_WALKING);
+                this.playAnimation(this.IMAGES_ALERT);
             }
         }, 200);
 
-        setInterval(() => {
-            this.moveLeft();
-            this.speed = 0.9;
-            this.otherDirection = false;
-        }, 1000 / 60);
+        // setInterval(() => {
+        //     this.moveLeft();
+        //     this.speed = 0.9;
+        //     this.otherDirection = false;
+        // }, 1000 / 60);
 
 
         // setInterval(() => {

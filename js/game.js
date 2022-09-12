@@ -1,7 +1,8 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-
+game_over = new Audio('audio/game_over.mp3');
+start_game = new Audio('audio/start_game.mp3');
 
 /**
  *  draws on canvas
@@ -88,9 +89,20 @@ window.addEventListener('keyup', (e) => {
 // hide start screen
 
 function hideStartScreen() {
-    document.getElementById('start-screen').classList.add('d-none');
-    document.getElementById('fullscreen').classList.remove('d-none');
+    this.start_game.play();
+    this.start_game.volume = 0.5;
+    let mainContainer = document.getElementById('main-container');
+    mainContainer.innerHTML = '';
 
+    mainContainer.innerHTML = `
+    <div class="game" id="game">
+        <h1>EL POLLO LOCO</h1>
+
+        <canvas id="canvas" width="720" height="480">
+        
+        </canvas>
+    </div>
+    `;
 }
 
 
@@ -104,18 +116,24 @@ function fullscreenCanvas() {
 // restart 
 
 function restart() {
-    location.reload();
+    this.start_game.play();
+    // this.start_game.volume = 0.5;
+    setTimeout(() => {
+        location.reload();
+    }, 100);
 }
 
 // game over
 
 function gameOver() {
-    document.getElementById('canvas').classList.add('d-none');
-    document.getElementById('fullscreen').classList.add('d-none');
-    document.getElementById('controls').classList.add('d-none');
+    this.game_over.play();
+    this.game_over.volume = 0.5;
+    let mainContainer = document.getElementById('main-container');
+    mainContainer.innerHTML = '';
 
-    document.getElementById('game-over').classList.remove('d-none');
-
-    // document.getElementById('game-over').style.backgroundImage = "url(img/9_intro_outro_screens/game_over/game over.png)"; // specify the image path here
-
+    mainContainer.innerHTML = `
+    <div class="game-over start-screen">
+        <img onclick="restart()" src="./img/restart.png" alt="">      
+    </div>
+    `;
 }
