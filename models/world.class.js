@@ -33,7 +33,7 @@ class World {
     // check collision
     run() {
         setInterval(() => {
-            this.checkCollisions();
+            // this.checkCollisions();
             this.checkThrowObjects();
             this.collisionWithBottle();
             this.collisionWithCoin();

@@ -20,6 +20,7 @@ function init() {
     //     ctx.drawImage(character, 20, 20, 50, 150); //drawImage(src, x-axis, y-axis, widht, height) is a built-in function
 
     // }, 10);
+    touchButtons();
 }
 
 
@@ -86,30 +87,143 @@ window.addEventListener('keyup', (e) => {
 });
 
 
+function touchButtons() {
+    document.getElementById('left').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = true;
+    });
+
+    document.getElementById('left').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.LEFT = false;
+    });
+
+    document.getElementById('right').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = true;
+    });
+
+    document.getElementById('right').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.RIGHT = false;
+    });
+
+    document.getElementById('jump').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.UP = true;
+    });
+
+    document.getElementById('jump').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.UP = false;
+    });
+
+    document.getElementById('bottle').addEventListener('touchstart', (e) => {
+        e.preventDefault();
+        keyboard.D = true;
+    });
+
+    document.getElementById('bottle').addEventListener('touchend', (e) => {
+        e.preventDefault();
+        keyboard.D = false;
+    });
+}
+
+
 // hide start screen
 
 function hideStartScreen() {
     this.start_game.play();
     this.start_game.volume = 0.5;
+
     let mainContainer = document.getElementById('main-container');
     mainContainer.innerHTML = '';
+    mainContainer.innerHTML = generateCanvas();
+    initLevel();
+    init();
+}
 
-    mainContainer.innerHTML = `
+
+/**
+ * generates canvas on html page
+ */
+
+function generateCanvas() {
+    return `
     <div class="game" id="game">
         <h1>EL POLLO LOCO</h1>
-
-        <canvas id="canvas" width="720" height="480">
+        <div class="touch-btn-container" id="touch-btn">
+            
+            <div class="canvas-container">
+                <canvas id="canvas" width="720" height="480">
         
-        </canvas>
+                </canvas>
+           
+
+            <div class="touch-btn">
+                <div class="btns">
+                    <div class="left-and-right">
+                        <img id="left" src="img/left.ico" alt="">
+                        <img id="right" src="img/right.ico" alt="">
+                    </div>
+
+                    <!--<img src="img/play.ico" alt="">-->
+
+                    <div class="jump-and-bottle">
+                        <img id="bottle" class="d" src="img/bottle.ico" alt="">
+                        <img id="jump" src="img/up.ico" alt="">
+                    </div>
+                </div>
+                <div class="fullscreen">
+                    <img onclick="fullscreen()" id="fullscreen-img" src="img/fullscreen.ico" alt="">
+                </div>
+            </div>
+
+            </div>
+        </div>
+
+       
+
     </div>
     `;
 }
 
 
-// fullscreen canvas
+/**
+ * fullscreen
+ */
+function fullscreen() {
+    let fullscreen = document.getElementById('game')
+        // let fullscreenImg = document.getElementById('fullscreen-img');
+    enterFullscreen(fullscreen);
+    // fullscreenImg.src = 'img/fullscreen-exit.ico ';
+}
 
-function fullscreenCanvas() {
-    canvas.requestFullscreen();
+
+/**
+ *  fullscreen canvas
+ */
+function enterFullscreen(element) {
+    if (element.requestFullscreen) {
+        element.requestFullscreen();
+    } else if (element.msRequestFullscreen) { // for IE11 (remove June 15, 2022)
+        element.msRequestFullscreen();
+    } else if (element.webkitRequestFullscreen) { // iOS Safari
+        element.webkitRequestFullscreen();
+    }
+}
+
+
+/**
+ *  exit fullscreen  
+ */
+
+function exitFullscreen() {
+    if (document.exitFullscreen) {
+        document.exitFullscreen();
+    } else if (document.webkitExitFullscreen) {
+        document.webkitExitFullscreen();
+    }
 }
 
 
