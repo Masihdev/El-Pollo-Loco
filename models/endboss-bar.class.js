@@ -1,5 +1,4 @@
 class EndbossBar extends DrawableObjects {
-
     percentage = 50;
 
 

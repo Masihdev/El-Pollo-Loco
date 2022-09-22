@@ -1,5 +1,4 @@
 class MovableObject extends DrawableObjects {
-
     speed = 0.15;
     otherDirection = false;
     speedY = 0; // falling speed
@@ -8,10 +7,7 @@ class MovableObject extends DrawableObjects {
     lastHit = 0;
 
 
-
-
     // falling to the ground
-
     applyGravity() {
         setInterval(() => {
             if (this.isAboveGround() || this.speedY > 0) {

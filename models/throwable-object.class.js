@@ -1,7 +1,5 @@
 class ThrowableObject extends MovableObject {
-
     bottleRotation = false;
-    bottleSplash = false;
 
 
     IMAGES = [
@@ -35,10 +33,6 @@ class ThrowableObject extends MovableObject {
         this.height = 80;
         this.width = 70;
         this.throw();
-
-        // this.speedY = 15;
-        // this.applyGravity();
-
     }
 
 
@@ -48,7 +42,6 @@ class ThrowableObject extends MovableObject {
         setInterval(() => {
             this.x += 20;
         }, 25);
-
         this.animate();
     }
 

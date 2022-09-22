@@ -1,5 +1,4 @@
 class Character extends MovableObject {
-
     world; // connecting world class with character class
     speed = 10;
     x = -719 * 2;
@@ -94,13 +93,6 @@ class Character extends MovableObject {
 
     // animate the pics
     animate() {
-
-
-        // setInterval(() => {
-        //     this.playAnimation(this.IMAGES_IDLE);
-        // }, 150);
-
-
         setInterval(() => {
             // walking right
             this.walking_sound.pause();
@@ -109,7 +101,6 @@ class Character extends MovableObject {
                 this.otherDirection = false;
                 this.walking_sound.play();
                 this.walking_sound.volume = 0.1;
-
             }
 
             // walking left
@@ -135,7 +126,6 @@ class Character extends MovableObject {
             // when the character moves left or right, camera view moves reverse
             this.world.camera_x = -this.x + 100;
         }, 1000 / 60);
-
 
 
         let CharacterImages = setInterval(() => {

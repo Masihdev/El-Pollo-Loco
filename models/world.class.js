@@ -32,7 +32,7 @@ class World {
     // check collision
     run() {
         setInterval(() => {
-            // this.checkCollisions();
+            this.checkCollisions();
             this.checkThrowObjects();
             this.collisionWithBottle();
             this.collisionWithCoin();
@@ -45,10 +45,10 @@ class World {
     checkCollisions() {
         this.level.enemies.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                console.log('collision with character', enemy)
+                // console.log('collision with character', enemy)
                 this.character.hit();
                 this.statusbar.setPercentage(this.character.energy);
-                console.log('collision with character, energy ', this.character.energy)
+                // console.log('collision with character, energy ', this.character.energy)
             }
         });
     }
@@ -60,7 +60,7 @@ class World {
                 console.log('collision with character', enemy)
                 this.character.hit();
                 this.statusbar.setPercentage(this.character.energy);
-                console.log('collision with character, energy ', this.character.energy)
+                // console.log('collision with character, energy ', this.character.energy)
             }
         });
     }
@@ -73,7 +73,7 @@ class World {
                 this.coinbar.getCoin();
                 this.coinbar.setPercentage(this.coinbar.percentage);
                 this.level.coin.splice(i, 1);
-                console.log('collision with coin', coin);
+                // console.log('collision with coin', coin);
                 this.coin_collect_sound.play();
                 this.coin_collect_sound.volume = 0.1;
             }
@@ -87,7 +87,7 @@ class World {
                 this.bottlebar.getBottle();
                 this.bottlebar.setPercentage(this.bottlebar.percentage);
                 this.level.bottles.splice(i, 1);
-                console.log('collision with bottle', this.bottles);
+                // console.log('collision with bottle', this.bottles);
                 this.bottle_collect_sound.play();
                 this.throw_bottle_sound.volume = 0.1;
             }
@@ -113,22 +113,21 @@ class World {
         this.throwableObject.forEach((to, index) => {
             if (to.isColliding(this.endboss)) {
                 this.endboss.hit();
-                bottle.bottleSplash = true;
                 this.endboss_hurt_Sound.play();
                 this.endbossbar.setPercentage(this.endboss.energy);
                 // to.bottleCollision();
 
-                setTimeout(() => {
-                    // this.throwableObject.splice(index, 1);
-                }, 200);
+                //     setTimeout(() => {
+                //         // this.throwableObject.splice(index, 1);
+                //     }, 200);
 
-            } else if (to.y > 255) {
-                // this.bottle_shattered_sound.play();
-                // to.bottleCollision();
+                // } else if (to.y > 255) {
+                //     // this.bottle_shattered_sound.play();
+                //     // to.bottleCollision();
 
-                setTimeout(() => {
-                    // this.throwableObjects.splice(index, 1)
-                }, 100);
+                //     setTimeout(() => {
+                //         // this.throwableObjects.splice(index, 1)
+                //     }, 100);
             }
         });
     }
@@ -145,15 +144,10 @@ class World {
      */
 
     draw() {
-
         // clears canvas when objects move
-
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-
         // moving camera view left and right
-
         this.ctx.translate(this.camera_x, 0);
-
         // with drawImage() can we draw the image we want (imagePath, x-Axis, y-Axis, width, height)
         this.addObjectsToMap(this.level.backgroundobjects);
         this.addObjectsToMap(this.level.clouds);
@@ -170,9 +164,7 @@ class World {
         this.addToMap(this.coinbar);
         this.addToMap(this.endbossbar);
         this.ctx.translate(this.camera_x, 0); // forward
-
         // moving camera view back to it's first place
-
         this.ctx.translate(-this.camera_x, 0);
 
 
