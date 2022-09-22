@@ -1,6 +1,8 @@
 class ThrowableObject extends MovableObject {
 
     bottleRotation = false;
+    bottleSplash = false;
+
 
     IMAGES = [
         'img/7_statusbars/3_icons/icon_salsa_bottle.png',

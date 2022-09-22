@@ -1,5 +1,5 @@
 class Bottle extends DrawableObjects {
-
+    percentage = 0;
     // x = 200;
 
     IMAGES = [
@@ -12,7 +12,6 @@ class Bottle extends DrawableObjects {
     ];
 
 
-    percentage = 0;
 
 
     constructor() {

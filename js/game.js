@@ -1,8 +1,10 @@
 let canvas;
 let world;
+let lastActivity;
 let keyboard = new Keyboard();
 game_over = new Audio('audio/game_over.mp3');
 start_game = new Audio('audio/start_game.mp3');
+
 
 /**
  *  draws on canvas
@@ -32,26 +34,32 @@ window.addEventListener('keydown', (e) => {
 
     if (e.keyCode == 39) {
         keyboard.RIGHT = true;
+        lastActivity = new Date().getTime();
     }
 
     if (e.keyCode == 37) {
         keyboard.LEFT = true;
+        lastActivity = new Date().getTime();
     }
 
     if (e.keyCode == 38) {
         keyboard.UP = true;
+        lastActivity = new Date().getTime();
     }
 
     if (e.keyCode == 40) {
         keyboard.DOWN = true;
+        lastActivity = new Date().getTime();
     }
 
     if (e.keyCode == 32) {
         keyboard.SPACE = true;
+        lastActivity = new Date().getTime();
     }
 
     if (e.keyCode == 68) {
         keyboard.D = true;
+        lastActivity = new Date().getTime();
     }
 });
 
@@ -110,12 +118,12 @@ function touchButtons() {
 
     document.getElementById('jump').addEventListener('touchstart', (e) => {
         e.preventDefault();
-        keyboard.UP = true;
+        keyboard.SPACE = true;
     });
 
     document.getElementById('jump').addEventListener('touchend', (e) => {
         e.preventDefault();
-        keyboard.UP = false;
+        keyboard.SPACE = false;
     });
 
     document.getElementById('bottle').addEventListener('touchstart', (e) => {

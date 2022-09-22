@@ -1,6 +1,6 @@
 class Character extends MovableObject {
 
-    world; // connecting workd class with character class
+    world; // connecting world class with character class
     speed = 10;
     x = -719 * 2;
 
@@ -80,7 +80,7 @@ class Character extends MovableObject {
 
 
     constructor() {
-        super().loadImage(this.IMAGES_IDLE[0]);
+        super().loadImage(this.IMAGES_WALKING[0]);
         this.loadImages(this.IMAGES_IDLE);
         this.loadImages(this.IMAGES_LONG_IDLE);
         this.loadImages(this.IMAGES_WALKING);
@@ -96,9 +96,9 @@ class Character extends MovableObject {
     animate() {
 
 
-        setInterval(() => {
-            this.playAnimation(this.IMAGES_IDLE);
-        }, 150);
+        // setInterval(() => {
+        //     this.playAnimation(this.IMAGES_IDLE);
+        // }, 150);
 
 
         setInterval(() => {
@@ -108,7 +108,7 @@ class Character extends MovableObject {
                 this.moveRight();
                 this.otherDirection = false;
                 this.walking_sound.play();
-                this.walking_sound.volume = 0.01;
+                this.walking_sound.volume = 0.1;
 
             }
 
@@ -117,25 +117,28 @@ class Character extends MovableObject {
                 this.moveLeft();
                 this.otherDirection = true;
                 this.walking_sound.play();
-                this.walking_sound.volume = 0.01;
+                this.walking_sound.volume = 0.1;
             }
 
+            // pause walking sound when abouve ground
+            if (this.isAboveGround()) {
+                this.walking_sound.pause();
+            }
+
+            // jump when not above ground
             if (this.world.keyboard.SPACE && !this.isAboveGround()) {
                 this.jump();
-
                 this.jumping_sound.play();
                 this.jumping_sound.volume = 0.1;
             }
 
             // when the character moves left or right, camera view moves reverse
             this.world.camera_x = -this.x + 100;
-
         }, 1000 / 60);
 
 
 
         let CharacterImages = setInterval(() => {
-
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
                 this.character_death.play();
@@ -144,7 +147,6 @@ class Character extends MovableObject {
                     clearInterval(CharacterImages);
                     gameOver();
                 }, 2000);
-
                 this.world.keyboard = false;
 
             } else if (this.isHurt()) {
@@ -153,14 +155,20 @@ class Character extends MovableObject {
                 this.character_hurt.volume = 0.1;
             } else if (this.isAboveGround()) {
                 this.playAnimation(this.IMAGES_JUMP);
-
             } else if (this.world.keyboard.RIGHT || this.world.keyboard.LEFT) {
                 this.playAnimation(this.IMAGES_WALKING);
+            } else if (this.isSleeping()) {
+                this.playAnimation(this.IMAGES_LONG_IDLE);
+            } else {
+                this.playAnimation(this.IMAGES_IDLE);
             }
-
         }, 100);
 
     }
 
-
+    isSleeping() {
+        let timePassed = new Date().getTime() - lastActivity;;
+        timePassed = timePassed / 1000
+        return timePassed > 5;
+    }
 }

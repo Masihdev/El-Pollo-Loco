@@ -1,5 +1,4 @@
 class World {
-
     character = new Character();
     level = level1;
     ctx;
@@ -12,11 +11,11 @@ class World {
     endboss = this.level.endboss[0];
     endbossbar = new EndbossBar();
     throwableObject = [];
+    lastActivity;
     coin_collect_sound = new Audio('audio/coin_collect.mp3');
     bottle_collect_sound = new Audio('audio/bottle_collect.mp3');
     throw_bottle_sound = new Audio('audio/throw_bottle.mp3');
     endboss_hurt_Sound = new Audio('audio/endboss_hurt.mp3');
-
     endboss_hurt_Sound1 = new Audio('1.mp3');
 
 
@@ -114,6 +113,7 @@ class World {
         this.throwableObject.forEach((to, index) => {
             if (to.isColliding(this.endboss)) {
                 this.endboss.hit();
+                bottle.bottleSplash = true;
                 this.endboss_hurt_Sound.play();
                 this.endbossbar.setPercentage(this.endboss.energy);
                 // to.bottleCollision();
