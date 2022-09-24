@@ -11,7 +11,7 @@ body {
 .main-container {
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url('img/5_background/complete_background.png');
+    background-image: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .05)), url('img/5_background/complete_background.png');
     height: 100vh;
 }
 
@@ -23,7 +23,7 @@ body {
     flex-direction: column;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url('img/5_background/complete_background.png');
+    background-image: linear-gradient(rgba(255, 255, 255, .8), rgba(255, 255, 255, .05)), url('img/5_background/complete_background.png');
 }
 
 .start-btn {
@@ -105,7 +105,6 @@ body {
 }
 
 h1 {
-    display: none;
     color: #FFDD02;
     font-size: 64px;
     font-family: 'zabars';
@@ -167,7 +166,7 @@ h1 {
 }
 
 .game-over {
-    background-image: url('img/9_intro_outro_screens/game_over/game over.png');
+    background-image: url('./img/9_intro_outro_screens/game_over/oh no you lost!.png');
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

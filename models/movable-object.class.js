@@ -5,6 +5,8 @@ class MovableObject extends DrawableObjects {
     acceleration = 2.5;
     energy = 100;
     lastHit = 0;
+    CharacterImages;
+
 
 
     // falling to the ground

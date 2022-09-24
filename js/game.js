@@ -171,19 +171,19 @@ function generateCanvas() {
             <div class="touch-btn">
                 <div class="btns">
                     <div class="left-and-right">
-                        <img id="left" src="img/left.ico" alt="">
-                        <img id="right" src="img/right.ico" alt="">
+                        <img id="left" src="./img/left.ico" alt="">
+                        <img id="right" src="./img/right.ico" alt="">
                     </div>
 
                     <!--<img src="img/play.ico" alt="">-->
 
                     <div class="jump-and-bottle">
-                        <img id="bottle" class="d" src="img/bottle.ico" alt="">
-                        <img id="jump" src="img/up.ico" alt="">
+                        <img id="bottle" class="d" src="./img/bottle.ico" alt="">
+                        <img id="jump" src="./img/up.ico" alt="">
                     </div>
                 </div>
                 <div class="fullscreen">
-                    <img onclick="fullscreen()" id="fullscreen-img" src="img/fullscreen.ico" alt="">
+                    <img onclick="fullscreen()" id="fullscreen-img" src="./img/fullscreen.ico" alt="">
                 </div>
             </div>
 
@@ -254,8 +254,12 @@ function gameOver() {
     mainContainer.innerHTML = '';
 
     mainContainer.innerHTML = `
-    <div class="game-over start-screen">
-        <img onclick="restart()" src="./img/restart.png" alt="">      
+    <div class="game-over start-screen" id="game-over">
+        <img id="lost-game" onclick="restart()" src="./img/restart.png" alt="">      
     </div>
     `;
+}
+
+function changeGameOverBImg() {
+    document.getElementById('game-over').style.backgroundImage = "url('./img/9_intro_outro_screens/game_over/game over!.png')";
 }

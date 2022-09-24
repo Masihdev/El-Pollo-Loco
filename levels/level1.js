@@ -83,6 +83,11 @@ function initLevel() {
             new BottleOnGround(),
             new BottleOnGround(),
             new BottleOnGround(),
+            new BottleOnGround(),
+            new BottleOnGround(),
+            new BottleOnGround(),
+            new BottleOnGround(),
+            new BottleOnGround(),
             new BottleOnGround()
         ],
 

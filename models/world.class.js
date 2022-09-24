@@ -9,6 +9,7 @@ class World {
     coinbar = new CoinBar();
     bottlebar = new Bottle();
     endboss = this.level.endboss[0];
+
     endbossbar = new EndbossBar();
     throwableObject = [];
     lastActivity;
@@ -32,7 +33,7 @@ class World {
     // check collision
     run() {
         setInterval(() => {
-            this.checkCollisions();
+            // this.checkCollisions();
             this.checkThrowObjects();
             this.collisionWithBottle();
             this.collisionWithCoin();
@@ -57,7 +58,7 @@ class World {
     checkCollisionWithEndboss() {
         this.level.endboss.forEach((enemy) => {
             if (this.character.isColliding(enemy)) {
-                console.log('collision with character', enemy)
+                // console.log('collision with character', enemy)
                 this.character.hit();
                 this.statusbar.setPercentage(this.character.energy);
                 // console.log('collision with character, energy ', this.character.energy)
@@ -96,12 +97,12 @@ class World {
 
 
     checkThrowObjects() {
-        if (this.bottlebar.percentage >= 20 && this.keyboard.D) {
-            let bottle = new ThrowableObject(this.character.x + 80, this.character.y + 120);
+        if (this.bottlebar.percentage >= 10 && this.keyboard.D) {
+            let bottle = new ThrowableObject(this.character.x + 80, this.character.y + 120, this.character.otherDirection);
             this.throwableObject.push(bottle);
-            bottle.bottleRotation = true;
             this.bottlebar.reduceBottles();
             this.bottlebar.setPercentage(this.bottlebar.percentage);
+            this.keyboard.D = false;
             this.throw_bottle_sound.play();
             this.throw_bottle_sound.volume = 0.1;
             //     this.throwableObject.splice(0, 1);
@@ -115,19 +116,7 @@ class World {
                 this.endboss.hit();
                 this.endboss_hurt_Sound.play();
                 this.endbossbar.setPercentage(this.endboss.energy);
-                // to.bottleCollision();
-
-                //     setTimeout(() => {
-                //         // this.throwableObject.splice(index, 1);
-                //     }, 200);
-
-                // } else if (to.y > 255) {
-                //     // this.bottle_shattered_sound.play();
-                //     // to.bottleCollision();
-
-                //     setTimeout(() => {
-                //         // this.throwableObjects.splice(index, 1)
-                //     }, 100);
+                this.splash = true;
             }
         });
     }

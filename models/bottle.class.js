@@ -17,7 +17,7 @@ class BottleOnGround extends MovableObject {
         super().loadImage(this.IMAGES_BOTTLE[this.selectRandomBottle()]);
         this.loadImages(this.IMAGES_BOTTLE);
         this.animate();
-        this.x = 200 + Math.random() * 2100;
+        this.x = -700 + Math.random() * 2100;
     }
 
     selectRandomBottle() {

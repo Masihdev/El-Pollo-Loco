@@ -1,5 +1,5 @@
 class EndbossBar extends DrawableObjects {
-    percentage = 50;
+    percentage = 100;
 
 
     IMAGES = [
@@ -19,7 +19,7 @@ class EndbossBar extends DrawableObjects {
         this.y = 0;
         this.width = 200;
         this.height = 70;
-        this.setPercentage(50);
+        this.setPercentage(100);
     }
 
 
@@ -31,15 +31,15 @@ class EndbossBar extends DrawableObjects {
 
 
     resolveImageIndex() {
-        if (this.percentage == 50) {
+        if (this.percentage == 100) {
             return 5;
-        } else if (this.percentage == 40) {
+        } else if (this.percentage >= 80) {
             return 4;
-        } else if (this.percentage == 30) {
+        } else if (this.percentage >= 60) {
             return 3;
-        } else if (this.percentage == 20) {
+        } else if (this.percentage >= 40) {
             return 2;
-        } else if (this.percentage == 10) {
+        } else if (this.percentage >= 20) {
             return 1;
         } else {
             return 0;
