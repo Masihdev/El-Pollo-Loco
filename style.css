@@ -141,12 +141,13 @@ h1 {
     left: 0;
     bottom: 0;
     padding: 10px;
-    z-index: -1;
+    /* z-index: -1; */
 }
 
 .btns {
     display: flex;
     justify-content: space-between;
+    z-index: -1;
 }
 
 .left-and-right,
@@ -163,6 +164,7 @@ h1 {
 
 .fullscreen img {
     width: 28px;
+    cursor: pointer;
 }
 
 .game-over {
@@ -196,8 +198,11 @@ h1 {
     .controls {
         display: none;
     }
-    .touch-btn {
+    .btns {
         z-index: 1;
+    }
+    .fullscreen {
+        z-index: -1;
     }
     .left-and-right,
     .jump-and-bottle {
@@ -215,12 +220,18 @@ h1 {
     h1 {
         display: none;
     }
-    .touch-btn {
+    .btns {
         z-index: 1;
+    }
+    .fullscreen {
+        z-index: -1;
     }
     .start-btn {
         width: 300px;
         height: 70px;
+    }
+    #lost-game {
+        width: 80px;
     }
 }
 

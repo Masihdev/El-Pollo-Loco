@@ -8,7 +8,6 @@ class MovableObject extends DrawableObjects {
     CharacterImages;
 
 
-
     // falling to the ground
     applyGravity() {
         setInterval(() => {
@@ -27,7 +26,6 @@ class MovableObject extends DrawableObjects {
             return this.y < 200;
         }
     }
-
 
 
     isColliding(mo) {

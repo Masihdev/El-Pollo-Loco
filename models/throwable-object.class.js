@@ -16,7 +16,6 @@ class ThrowableObject extends MovableObject {
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/4_bottle_splash.png',
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/5_bottle_splash.png',
         'img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png'
-
     ];
 
     IMAGES_BOTTLE_SPLASH = [
@@ -38,7 +37,6 @@ class ThrowableObject extends MovableObject {
         this.height = 80;
         this.width = 70;
         this.throw();
-
         this.speedY = 25;
         this.otherDirection = otherDirection;
         this.applyGravity();
@@ -46,7 +44,6 @@ class ThrowableObject extends MovableObject {
 
 
     throw () {
-
         setInterval(() => {
             if (this.splash) {
                 this.playAnimation(this.IMAGES_BOTTLE_SPLASH);

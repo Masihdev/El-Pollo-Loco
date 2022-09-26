@@ -1,6 +1,6 @@
 class Bottle extends DrawableObjects {
     percentage = 0;
-    // x = 200;
+
 
     IMAGES = [
         'img/7_statusbars/1_statusbar/3_statusbar_bottle/blue/0.png',
@@ -46,12 +46,14 @@ class Bottle extends DrawableObjects {
         }
     }
 
+
     getBottle() {
         if (this.percentage < 100) {
             this.percentage += 10;
         }
 
     }
+
 
     reduceBottles() {
         this.percentage -= 10;

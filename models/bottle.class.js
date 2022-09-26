@@ -20,9 +20,11 @@ class BottleOnGround extends MovableObject {
         this.x = -700 + Math.random() * 2100;
     }
 
+
     selectRandomBottle() {
         return Math.floor(Math.random() * this.IMAGES_BOTTLE.length);
     }
+
 
     animate() {
         setInterval(() => {

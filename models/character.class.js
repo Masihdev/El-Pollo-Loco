@@ -93,41 +93,7 @@ class Character extends MovableObject {
 
     // animate the pics
     animate() {
-        setInterval(() => {
-            // walking right
-            this.walking_sound.pause();
-            if (this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x) {
-                this.moveRight();
-                this.otherDirection = false;
-                this.walking_sound.play();
-                this.walking_sound.volume = 0.1;
-            }
-
-            // walking left
-            if (this.world.keyboard.LEFT && this.x > -2047) {
-                this.moveLeft();
-                this.otherDirection = true;
-                this.walking_sound.play();
-                this.walking_sound.volume = 0.1;
-            }
-
-            // pause walking sound when abouve ground
-            if (this.isAboveGround()) {
-                this.walking_sound.pause();
-            }
-
-            // jump when not above ground
-            if (this.world.keyboard.SPACE && !this.isAboveGround()) {
-                this.jump();
-                this.jumping_sound.play();
-                this.jumping_sound.volume = 0.1;
-            }
-
-            // when the character moves left or right, camera view moves reverse
-            this.world.camera_x = -this.x + 100;
-        }, 1000 / 60);
-
-
+        setInterval(() => this.moveCharacter(), 1000 / 60);
         let CharacterImages = setInterval(() => {
             if (this.isDead()) {
                 this.playAnimation(this.IMAGES_DEAD);
@@ -136,6 +102,7 @@ class Character extends MovableObject {
                 setTimeout(() => {
                     clearInterval(CharacterImages);
                     gameOver();
+                    // changeGameOverBImg();
                 }, 2000);
                 this.world.keyboard = false;
 
@@ -153,8 +120,64 @@ class Character extends MovableObject {
                 this.playAnimation(this.IMAGES_IDLE);
             }
         }, 100);
-
     }
+
+
+    moveCharacter() {
+        // walking right
+        this.walking_sound.pause();
+        if (this.canMoveRight()) {
+            this.MoveRight()
+        }
+        // walking left
+        if (this.canMoveLeft()) {
+            this.moveLeft();
+        }
+        // pause walking sound when abouve ground
+        if (this.isAboveGround()) {
+            this.walking_sound.pause();
+        }
+        // jump when not above ground
+        if (this.canJump()) {
+            this.jump();
+            this.jumping_sound.play();
+            this.jumping_sound.volume = 0.1;
+        }
+        // when the character moves left or right, camera view moves reverse
+        this.world.camera_x = -this.x + 100;
+    }
+
+
+    canMoveRight() {
+        return this.world.keyboard.RIGHT && this.x < this.world.level.level_end_x;
+    }
+
+
+    MoveRight() {
+        super.moveRight();
+        this.otherDirection = false;
+        this.walking_sound.play();
+        this.walking_sound.volume = 0.1;
+    }
+
+
+    canMoveLeft() {
+        return this.world.keyboard.LEFT && this.x > -2047;
+    }
+
+
+    moveLeft() {
+        super.moveLeft();
+        this.otherDirection = true;
+        this.walking_sound.play();
+        this.walking_sound.volume = 0.1;
+    }
+
+
+    canJump() {
+        return this.world.keyboard.SPACE && !this.isAboveGround();
+    }
+
 
     isSleeping() {
         let timePassed = new Date().getTime() - lastActivity;;

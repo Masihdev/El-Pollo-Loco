@@ -9,7 +9,6 @@ class World {
     coinbar = new CoinBar();
     bottlebar = new Bottle();
     endboss = this.level.endboss[0];
-
     endbossbar = new EndbossBar();
     throwableObject = [];
     lastActivity;
@@ -17,7 +16,6 @@ class World {
     bottle_collect_sound = new Audio('audio/bottle_collect.mp3');
     throw_bottle_sound = new Audio('audio/throw_bottle.mp3');
     endboss_hurt_Sound = new Audio('audio/endboss_hurt.mp3');
-    endboss_hurt_Sound1 = new Audio('1.mp3');
 
 
     constructor(canvas, keyboard) {
@@ -33,7 +31,7 @@ class World {
     // check collision
     run() {
         setInterval(() => {
-            // this.checkCollisions();
+            this.checkCollisions();
             this.checkThrowObjects();
             this.collisionWithBottle();
             this.collisionWithCoin();
@@ -125,13 +123,13 @@ class World {
     // connecting world class with character class
     setWorld() {
         this.character.world = this;
+        this.endboss.world = this;
     }
 
 
     /**
      * draws objects on canvas
      */
-
     draw() {
         // clears canvas when objects move
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -160,7 +158,6 @@ class World {
         /**
          *  calls draw() repeatedly
          */
-
         let self = this;
         requestAnimationFrame(function() {
             self.draw();
@@ -173,7 +170,6 @@ class World {
      * adds every object to the map
      * @param {*} objects 
      */
-
     addObjectsToMap(objects) {
         objects.forEach(o => {
             this.addToMap(o);
@@ -185,11 +181,8 @@ class World {
      * add movable objects to map
      * @param {*} mo 
      */
-
     addToMap(mo) {
-
         // mirror image
-
         if (mo.otherDirection) {
             this.flipImage(mo);
         }
@@ -198,15 +191,13 @@ class World {
         mo.drawFrame(this.ctx);
 
         // mirror image
-
         if (mo.otherDirection) {
             this.flipImageBack(mo);
         }
-
     }
 
-    // mirror image
 
+    // mirror image
     flipImage(mo) {
         this.ctx.save();
         this.ctx.translate(mo.width, 0);
@@ -214,8 +205,8 @@ class World {
         mo.x = mo.x * -1;
     }
 
-    // mirror image
 
+    // mirror image
     flipImageBack(mo) {
         this.ctx.restore();
         mo.x = mo.x * -1;

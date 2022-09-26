@@ -5,12 +5,10 @@ class Level {
     level_end_x = 2250; // end of canvan 
     bottles;
     coin;
-
     endboss;
 
 
     constructor(enemies, endboss, clouds, backgroundobjects, bottles, coin) {
-
         this.enemies = enemies;
         this.endboss = endboss;
         this.clouds = clouds;

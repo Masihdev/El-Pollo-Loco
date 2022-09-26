@@ -9,18 +9,12 @@ start_game = new Audio('audio/start_game.mp3');
 /**
  *  draws on canvas
  */
-
 function init() {
     canvas = document.getElementById('canvas');
     world = new World(canvas, keyboard);
-
     console.log('My character is', world.character);
-
-
     // setTimeout(() => {
-
     //     ctx.drawImage(character, 20, 20, 50, 150); //drawImage(src, x-axis, y-axis, widht, height) is a built-in function
-
     // }, 10);
     touchButtons();
 }
@@ -29,9 +23,7 @@ function init() {
 /**
  * activating keyborad keys when the keys are pressed
  */
-
 window.addEventListener('keydown', (e) => {
-
     if (e.keyCode == 39) {
         keyboard.RIGHT = true;
         lastActivity = new Date().getTime();
@@ -67,7 +59,6 @@ window.addEventListener('keydown', (e) => {
 /**
  * deactivating keyborad keys when the keys are not pressed
  */
-
 window.addEventListener('keyup', (e) => {
     if (e.keyCode == 39) {
         keyboard.RIGHT = false;
@@ -95,6 +86,9 @@ window.addEventListener('keyup', (e) => {
 });
 
 
+/**
+ * activating and deactivating touch buttons in mobile view
+ */
 function touchButtons() {
     document.getElementById('left').addEventListener('touchstart', (e) => {
         e.preventDefault();
@@ -139,7 +133,6 @@ function touchButtons() {
 
 
 // hide start screen
-
 function hideStartScreen() {
     this.start_game.play();
     this.start_game.volume = 0.5;
@@ -155,43 +148,33 @@ function hideStartScreen() {
 /**
  * generates canvas on html page
  */
-
 function generateCanvas() {
     return `
     <div class="game" id="game">
         <h1>EL POLLO LOCO</h1>
         <div class="touch-btn-container" id="touch-btn">
-            
-            <div class="canvas-container">
+            <div class="canvas-container" id="canvas-container">
                 <canvas id="canvas" width="720" height="480">
         
                 </canvas>
-           
-
-            <div class="touch-btn">
-                <div class="btns">
-                    <div class="left-and-right">
-                        <img id="left" src="./img/left.ico" alt="">
-                        <img id="right" src="./img/right.ico" alt="">
+                <div class="touch-btn">
+                    <div class="btns">
+                        <div class="left-and-right">
+                            <img id="left" src="./img/left.ico" alt="">
+                            <img id="right" src="./img/right.ico" alt="">
+                        </div>
+                        <!--<img src="img/play.ico" alt="">-->
+                        <div class="jump-and-bottle">
+                            <img id="bottle" class="d" src="./img/bottle.ico" alt="">
+                            <img id="jump" src="./img/up.ico" alt="">
+                        </div>
                     </div>
-
-                    <!--<img src="img/play.ico" alt="">-->
-
-                    <div class="jump-and-bottle">
-                        <img id="bottle" class="d" src="./img/bottle.ico" alt="">
-                        <img id="jump" src="./img/up.ico" alt="">
+                    <div class="fullscreen">
+                        <img onclick="fullscreen()" id="fullscreen-img" src="./img/fullscreen.ico" alt="">
                     </div>
                 </div>
-                <div class="fullscreen">
-                    <img onclick="fullscreen()" id="fullscreen-img" src="./img/fullscreen.ico" alt="">
-                </div>
-            </div>
-
             </div>
         </div>
-
-       
-
     </div>
     `;
 }
@@ -201,10 +184,8 @@ function generateCanvas() {
  * fullscreen
  */
 function fullscreen() {
-    let fullscreen = document.getElementById('game')
-        // let fullscreenImg = document.getElementById('fullscreen-img');
+    let fullscreen = document.getElementById('canvas');
     enterFullscreen(fullscreen);
-    // fullscreenImg.src = 'img/fullscreen-exit.ico ';
 }
 
 
@@ -225,7 +206,6 @@ function enterFullscreen(element) {
 /**
  *  exit fullscreen  
  */
-
 function exitFullscreen() {
     if (document.exitFullscreen) {
         document.exitFullscreen();
@@ -235,8 +215,9 @@ function exitFullscreen() {
 }
 
 
-// restart 
-
+/**
+ *  restart game  
+ */
 function restart() {
     this.start_game.play();
     // this.start_game.volume = 0.5;
@@ -245,14 +226,16 @@ function restart() {
     }, 100);
 }
 
-// game over
 
+/**
+ *  show game over  
+ */
 function gameOver() {
-    this.game_over.play();
-    this.game_over.volume = 0.5;
+    game_over.play();
+    game_over.volume = 0.5;
+
     let mainContainer = document.getElementById('main-container');
     mainContainer.innerHTML = '';
-
     mainContainer.innerHTML = `
     <div class="game-over start-screen" id="game-over">
         <img id="lost-game" onclick="restart()" src="./img/restart.png" alt="">      
@@ -260,6 +243,10 @@ function gameOver() {
     `;
 }
 
+
+/**
+ *  change game over image if endboss is killed  
+ */
 function changeGameOverBImg() {
     document.getElementById('game-over').style.backgroundImage = "url('./img/9_intro_outro_screens/game_over/game over!.png')";
 }
